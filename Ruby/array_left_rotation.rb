@@ -2,7 +2,7 @@
 =begin
 A left rotation operation on an array of size n shifts each of the array's elements 1 unit to the left. For example, if 2 left rotations are performed on array [1,2,3,4,5], then the array would become [3, 4, 5, 1, 2].
 
-Given an array of  integers and a number, , perform  left rotations on the array. Then print the updated array as a single line of space-separated integers.
+Given an array of n integers and a number, d, perform  left rotations on the array. Then print the updated array as a single line of space-separated integers.
 
 Input Format
 
@@ -11,7 +11,7 @@ The second line contains  space-separated integers describing the respective ele
 
 Output Format
 
-Print a single line of  space-separated integers denoting the final state of the array after performing  left rotations.
+Print a single line of n space-separated integers denoting the final state of the array after performing d left rotations.
 
 Sample Input
 
@@ -33,12 +33,12 @@ a = a.split(' ').map(&:to_i)
 tmp_a = Array.new
 tmp_a = a.clone
 
-# Take the first item in the array and remove the first item and 
-# push that to the end of the temp array
+# Store the first item in the array and remove  
+# Then push that to the end of the temp array
 k.times do
     array_add = tmp_a.shift
   tmp_a.push(array_add)
 end
 
-# Output the array as per requirements
+# Output the temp array as per requirements
 puts tmp_a.join(" ")
