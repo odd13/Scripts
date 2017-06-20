@@ -1,0 +1,40 @@
+#!/bin/ruby
+###
+# This is the character comparison of two strings and removes those
+# characters that do not match. Then outputs the number of characters
+# that had to be removed
+
+a = gets.strip
+b = gets.strip
+
+# Creating buffers to allow for comparison of original input and
+# output of similar characters if required
+@return_a = a
+@return_b = b
+
+@char_removed_count = 0
+
+# Compares the characters in two strings and counts how many letters
+# are not the same.
+def character_compare(a, b)
+    a_array = Array.new(a.split(''))
+    b_array = Array.new(b.split(''))
+    
+    a_array.each_with_index do |ax, i|
+        if !b_array.include? ax
+            @return_a = @return_a.tr(a_array[i],'')
+            @char_removed_count += 1
+        end
+    end
+
+    b_array.each_with_index do |bx, i|
+        if !a_array.include? bx
+            @return_b = @return_b.tr(b_array[i],'')
+            @char_removed_count += 1
+        end
+    end
+end
+
+character_compare(a, b)
+
+puts @char_removed_count
