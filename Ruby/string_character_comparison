@@ -4,8 +4,10 @@
 # number of excess characters. *Not an Anagram as the problem suggests*
 
 # Two sample strings to compare
-a = "abc"
-b = "cde"
+# a = "abc"
+# b = "cde"
+a = ARGV[0]
+b = ARGV[1]
 
 ####
 # Takes two strings and returns the excess characters
