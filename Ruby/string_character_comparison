@@ -1,40 +1,44 @@
 #!/bin/ruby
-###
-# This is the character comparison of two strings and removes those
-# characters that do not match. Then outputs the number of characters
-# that had to be removed
+#####
+# This will compare two strings, group the same characters and return the total 
+# number of excess characters. *Not an Anagram as the problem suggests*
 
-a = gets.strip
-b = gets.strip
+# Two sample strings to compare
+a = "abc"
+b = "cde"
 
-# Creating buffers to allow for comparison of original input and
-# output of similar characters if required
-@return_a = a
-@return_b = b
+####
+# Takes two strings and returns the excess characters
+def number_of_excess(first_string, second_string)
+  final_count = 0
+  
+  count_array = Array.new(26)
+  # Fill the count array with zero's. This is required as nil is not a fixed 
+  # number.
+  def count_array.[](index)
+    self.at(index) || 0
+  end
 
-@char_removed_count = 0
+  # Iterate through all the first string. Taking the current ascii number of the
+  # character (each_byte) and minus 'a' ascii (97). For example the character 'c' 
+  # is 99, so c - a = 99 - 97 = 2. This indicates an index in the count array 
+  # and we increments the value in that index. 
+  first_string.each_byte do |a|
+    count_array[a - 'a'[0].ord] += 1
+  end
 
-# Compares the characters in two strings and counts how many letters
-# are not the same.
-def character_compare(a, b)
-    a_array = Array.new(a.split(''))
-    b_array = Array.new(b.split(''))
-    
-    a_array.each_with_index do |ax, i|
-        if !b_array.include? ax
-            @return_a = @return_a.tr(a_array[i],'')
-            @char_removed_count += 1
-        end
-    end
+  # Once the first string has completed, the second now does the same though needs 
+  # to decrement the value in the count array.
+  second_string.each_byte do |b|
+    count_array[b - 'a'[0].ord] += -1
+  end
+  # Iterate through the count array, adding the numbers after returning them
+  # as an absolute number or positive (.abs)
+  count_array.each_with_index do |r, i|
+    final_count += r.to_i.abs
+  end
 
-    b_array.each_with_index do |bx, i|
-        if !a_array.include? bx
-            @return_b = @return_b.tr(b_array[i],'')
-            @char_removed_count += 1
-        end
-    end
+  return final_count
 end
 
-character_compare(a, b)
-
-puts @char_removed_count
+puts number_of_excess(a,b)
