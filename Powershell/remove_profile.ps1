@@ -7,7 +7,7 @@
         3. Rename Folder
 #>
 
-$prof_name = "chad.o"
+$prof_name = "user.name"
 $prof_to_remove = ""
 
 <# Profile folders to rename. These might be windows version specifica and need to be adjusted #>
